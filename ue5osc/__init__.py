@@ -107,3 +107,15 @@ class Communicator:
         # The python OSC library send_message method always requires a value
         self.client.send_message("/reset", 0.0)
         sleep(1)
+
+    def console(self, message: str) -> None:
+        """Sends messages to be executed in Unreal Engine's console."""
+        self.client.send_message("/console", message)
+
+    def switch_camera(self) -> None:
+        """Switches between camera views. One where the robot is visible or not."""
+        self.client.send_message("/switch/view", 0.0)
+
+    def quality(self, graphics_level: int) -> None:
+        """Sets the Game Graphics Settings. Takes an int between 0-4 where 0 is the lowest."""
+        self.client.send_message("/quality", graphics_level)
